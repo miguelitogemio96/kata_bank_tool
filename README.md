@@ -1,14 +1,14 @@
-# KATA BANK TOOL
-It's a tool that allows you map lines of text of digital numbers format into account numbers, Also you can apply some validations(functions) to each account number. The output will be a entire text where in each line will be the account number in int format followed by the its state.
+# KATA BANK PACKAGE TOOL 
+It's a tool that allows you map lines of text of digital numbers format into account numbers. Also you can apply some validations(functions) to each account number. The output will be a entire text where in each line will be the account number in int format followed by its state.
 
-### State of an Account Number
-- ERR if it is readable but it does't pass the validations.
-- ILL if it is now readable.
-- AMB is there is more that one posible account number that pass the validations(the tool tries to fix the account number if the result is ILL or ERR and show posibles valid account numbers).
-- OK when the account number is readable and pass all the validations.
+### States of an Account Number
+- **ILL** if the digital account number is now readable.
+- **ERR** if the digital account number is readable but it does't pass the validations.
+- **AMB** is there is more that one posible account number that pass all the validations(the tool tries to fix the account number if the result is ILL or ERR and show posibles valid account numbers adding or deleting one character to get a new number, then the result is listed in brackets).
+- **OK** when the account number is readable and pass all the validations.
 
 ## How to setup
-Before download the package, you need to be sure your pip is updated.
+Before download the package, you need to be sure your `pip` is updated.
 ```bash
 # Windows
 py -m pip install --upgrade pip
@@ -17,22 +17,22 @@ py -m pip install --upgrade pip
 python3 -m pip install --upgrade pip
 ```
 
-Then, you can install the package(could be inside a venv).
+Now, you can install the package(could be inside a venv).
 ```bash
 pip install -i https://test.pypi.org/simple/ kbt
 ```
 
-## Examples of How To Use (Buggy Alpha Version)
-Import the class and use the main method:
+## Examples of How To Import and Use
+Import the class helper and use the main method:
 ```python
 from kata_bank_tool.processs_helper import ProcessHelper
 
 output = ProcessHelper.map_str_lines_to_valid_account_numbers(data, lenght_account_numbers, *validations_functions)
 ```
-Where we have the parameters:
+Where we have the next parameters:
 - data(list[str]): The input list of strings that represents each line of text of the main file of account numbers.
-- lenght_account_numbers(int): The size of the account numbers(8, 9....)
-- *validations(function): Append any validations function(lambda function) that you want the tool applies to each account number.
+- lenght_account_numbers(int): The size of each account number (8, 9....).
+- *validations(function): Append any validation functions(lambda functions) that you want the tool applies to each account number.
 
 ### Note
 The input has to be a list(array) of string, where each item represent a line of text of the entire file of accounts numbers:
@@ -53,7 +53,7 @@ input_example = [
 ]
 ```
 
-## Example of Use
+## Example
 in main.py file
 ```python
 from kata_bank_tool.process_helper import ProcessHelper
@@ -98,3 +98,10 @@ $python main.py
 711111111 OK
 222222222 ERR
 ```
+
+## Run tests
+In the respotitory, there is a folder with some unit tests for the project, to run them just execute the comand:
+```bash
+pytest
+```
+You will need to have installed pytest module.
